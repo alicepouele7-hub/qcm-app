@@ -1,0 +1,125 @@
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --accent-color: #ec4899;
+    --accent-hover: #be185d;
+    /* Transparence pour voir le fond néon */
+    --card-bg: rgba(30, 41, 59, 0.95); 
+    --option-bg: rgba(51, 65, 85, 0.95);
+    --success: #10b981;
+    --danger: #ef4444;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* Image de fond */
+    background: url('fond.png') no-repeat center center fixed;
+    background-size: cover;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+h1 {
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(236, 72, 153, 0.95);
+}
+
+.subtitle {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    backdrop-filter: blur(5px); /* Flou derrière la carte */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.95);
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+}
+
+/* --- JOUEURS --- */
+.input-group { display: flex; gap: 10px; margin-bottom: 1.5rem; }
+input[type="text"] {
+    flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #475569;
+    background-color: rgba(15, 23, 42, 0.95); color: white;
+}
+.player-list {
+    list-style: none; padding: 0; display: flex; flex-wrap: wrap;
+    gap: 10px; margin-bottom: 1.5rem; justify-content: center;
+}
+.player-list li {
+    background-color: var(--option-bg); padding: 8px 15px; border-radius: 20px;
+}
+.delete-btn { background: none; border: none; color: var(--danger); cursor: pointer; margin-left: 8px; }
+
+/* --- JEU --- */
+.duo-banner {
+    background: linear-gradient(90deg, #be185d, var(--accent-color));
+    padding: 15px; border-radius: 10px; font-weight: bold; margin-bottom: 1.5rem;
+}
+.scenario-card {
+    background-color: var(--option-bg); padding: 1.5rem; border-radius: 10px;
+    min-height: 150px; margin-bottom: 1.5rem;
+}
+.scenario-text { font-size: 1.15rem; font-weight: bold; margin-bottom: 1.2rem; }
+.options { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.option {
+    background-color: rgba(71, 85, 105, 0.95); padding: 10px 15px;
+    border-radius: 8px; border-left: 5px solid var(--accent-color);
+}
+.option span { color: var(--accent-color); font-weight: bold; margin-right: 10px; }
+
+/* --- BOUTONS --- */
+button {
+    background-color: var(--accent-color); color: white; border: none;
+    padding: 12px 25px; border-radius: 50px; cursor: pointer;
+    font-weight: bold; text-transform: uppercase; transition: 0.2s;
+}
+button:hover:not(:disabled) { transform: scale(1.05); background-color: var(--accent-hover); }
+button:disabled { background-color: #475569; opacity: 0.5; }
+.match-btn { background-color: var(--success); }
+.fail-btn { background-color: var(--danger); }
+.controls { display: flex; gap: 10px; justify-content: center; }
+
+/* --- RÈGLES --- */
+.rules-box {
+    background-color: rgba(0, 0, 0, 0.95); padding: 1rem; border-radius: 10px;
+    text-align: left; margin-top: 1rem; font-size: 0.9rem;
+}
+
+/* --- FIN --- */
+.ranking-item {
+    display: flex; justify-content: space-between; padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.95);
+}
+.punishments { border: 2px dashed var(--accent-color); margin-top: 1rem; }
+
+/* --- OVERLAY --- */
+.countdown-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.5); z-index: 100;
+    justify-content: center; align-items: center; flex-direction: column;
+}
+.number { font-size: 8rem; color: var(--accent-color); animation: pulse 1s infinite; }
+.action-text { font-size: 2.5rem; color: var(--success); font-weight: bold; display: none; }
+@keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);} }

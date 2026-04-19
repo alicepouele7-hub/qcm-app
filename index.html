@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM Télépathique</title>
+    <link rel="stylesheet" href="projet.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Le QCM Télépathique</h1>
+        <div class="subtitle">Match sous haute pression</div>
+
+        <!-- ÉCRAN 1 : SETUP -->
+        <div id="setupScreen" class="card">
+            <h2>Qui joue ce soir ?</h2>
+            <div class="input-group">
+                <input type="text" id="playerName" placeholder="Prénom du joueur..." onkeypress="handleKeyPress(event)">
+                <button class="small-btn" onclick="addPlayer()">Ajouter</button>
+            </div>
+            <ul id="playerList" class="player-list"></ul>
+            <button id="startBtn" onclick="startGame()" disabled>Lancer la partie (Min. 2)</button>
+        </div>
+
+        <!-- ÉCRAN 2 : JEU -->
+        <div id="gameScreen" style="display: none;">
+            <div class="duo-banner">
+                Duo du tour : <span id="currentDuo">Joueur 1 & Joueur 2</span>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-text" id="scenarioText">Chargement du scénario...</div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+
+            <!-- Boutons avant le compte à rebours -->
+            <div class="controls" id="preCountControls">
+                <button onclick="startCountdown()">Lancer le Compte a Rebours</button>
+                <button class="secondary" onclick="nextDuoAndScenario()">Prochain Duo & Scenario</button>
+            </div>
+
+            <!-- Boutons après le compte à rebours -->
+            <div class="controls validation-btns" id="postCountControls" style="display: none;">
+                <button class="match-btn" onclick="handleResult(true)">MATCH !</button>
+                <button class="fail-btn" onclick="handleResult(false)">ECHEC</button>
+            </div>
+
+            <div class="rules-box">
+                <h3>Le Tribunal (Les Regles)</h3>
+                <p><strong>1.</strong> Le public lève le pouce (réussite) ou baisse le pouce (échec).</p>
+                <p><strong>2. MATCH (Même lettre) :</strong> Les pouces boivent 3 gorgées.</p>
+                <p><strong>3. ÉCHEC (Lettres différentes) :</strong> Le duo boit 2 gorgées. Les pouces boivent 1 gorgée.</p>
+            </div>
+
+            <div style="text-align:center; margin-top: 1rem;">
+                <button class="secondary small-btn" onclick="showEndScreen()">Voir le classement final</button>
+            </div>
+        </div>
+
+        <!-- ÉCRAN 3 : FIN -->
+        <div id="endScreen" style="display: none;">
+            <div class="card">
+                <h2>Classement Final</h2>
+                <div id="finalRanking"></div>
+            </div>
+            <div class="card punishments">
+                <h3>Les Punitions</h3>
+                <div id="punishmentText"></div>
+            </div>
+            <button onclick="restartGame()">Nouvelle Partie</button>
+        </div>
+    </div>
+
+    <!-- OVERLAY COMPTE À REBOURS -->
+    <div class="countdown-overlay" id="countdownOverlay">
+        <div class="number" id="countdownNumber">3</div>
+        <div class="action-text" id="actionText">CRIEZ ! (A, B ou C)</div>
+    </div>
+
+    <script src="projet.js"></script>
+</body>
+</html>
