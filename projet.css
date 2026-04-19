@@ -122,4 +122,35 @@ button:disabled { background-color: #475569; opacity: 0.5; }
 }
 .number { font-size: 8rem; color: var(--accent-color); animation: pulse 1s infinite; }
 .action-text { font-size: 2.5rem; color: var(--success); font-weight: bold; display: none; }
-@keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);} }
+@keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);}
+
+/* --- ADAPTATION POUR TÉLÉPHONE (MOBILE) --- */
+@media (max-width: 600px) {
+    /* 1. On réduit l'espace vide dans les cartes pour gagner de la place */
+    .card {
+        padding: 1rem;
+    }
+
+    /* 2. On empile les boutons les uns sur les autres au lieu de les écraser */
+    .controls {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px; /* Espace entre les boutons empilés */
+    }
+
+    /* 3. Les boutons prennent toute la largeur de l'écran (très joli sur mobile) */
+    .controls button {
+        width: 100%;
+    }
+
+    /* 4. On réduit un peu la taille du grand titre */
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    /* 5. On ajuste le texte "CRIEZ !" pour qu'il ne dépasse pas de l'écran */
+    .action-text {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+}
